@@ -1,0 +1,51 @@
+<div *ngIf="!isMinimized" class="mini-cart shadow p-3 bg-light rounded">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="fw-bold m-0">Your Cart</h5>
+    <button class="btn btn-sm btn-outline-secondary" (click)="toggleCart()">_</button>
+  </div>
+
+  <div *ngFor="let item of cart">
+    <div class="d-flex align-items-center mb-2">
+
+      <img [src]="item.imageURL" width="45" height="45" class="rounded me-2" />
+
+      <div class="flex-fill">
+        <div class="fw-semibold">{{ item.productName }}</div>
+
+        <div class="d-flex align-items-center mt-1">
+          <button class="btn btn-sm btn-outline-secondary" (click)="decrease(item.productId)">-</button>
+
+          <span class="mx-2 fw-bold">{{ item.quantity }}</span>
+
+          <button class="btn btn-sm btn-outline-secondary" (click)="increase(item.productId)">+</button>
+        </div>
+
+        <div class="text-muted small">
+          ₹ {{ item.price }} x {{ item.quantity }}
+        </div>
+      </div>
+
+      <button class="btn btn-sm btn-outline-danger" (click)="remove(item.productId)">
+        X
+      </button>
+
+    </div>
+    <hr />
+  </div>
+
+  <div class="d-flex justify-content-between fw-bold fs-5">
+    <span>Total:</span>
+    <span>₹ {{ totalPrice }}</span>
+  </div>
+
+  <button class="btn btn-success w-100 mt-3" (click)="checkout()">Checkout</button>
+</div>
+
+<div *ngIf="isMinimized"
+  class="mini-cart-icon shadow bg-success text-white rounded-circle d-flex justify-content-center align-items-center"
+  (click)="toggleCart()">
+  <i class="bi bi-cart-fill fs-4"></i>
+  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    {{ cart.length }}
+  </span>
+</div>

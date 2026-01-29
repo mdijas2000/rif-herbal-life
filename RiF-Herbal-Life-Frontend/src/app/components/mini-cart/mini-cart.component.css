@@ -1,0 +1,19 @@
+.mini-cart {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  z-index: 5000;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.mini-cart-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  z-index: 5000;
+  cursor: pointer;
+}

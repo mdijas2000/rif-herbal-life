@@ -1,0 +1,425 @@
+/* Herbal Theme Variables */
+:root {
+    --herbal-primary: #22c55e;
+    --herbal-dark: #166534;
+    --herbal-darker: #14532d;
+    --herbal-light: #f0fdf4;
+    --herbal-accent: #fbbf24;
+    --earth-tone: #92400e;
+}
+
+/* Container */
+.product-details-container {
+    background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+/* Back Button */
+.back-button-wrapper {
+    margin-bottom: 1.5rem;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: white;
+    color: var(--herbal-dark);
+    text-decoration: none;
+    border-radius: 50px;
+    border: 2px solid var(--herbal-primary);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.15);
+}
+
+.back-btn:hover {
+    background: var(--herbal-primary);
+    color: black;
+    transform: translateX(-5px);
+}
+
+/* Product Image Section */
+.product-image-section {
+    position: relative;
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 8px 24px rgba(34, 197, 94, 0.12);
+    overflow: hidden;
+}
+
+.natural-badge-large {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(10deg);
+    }
+}
+
+.main-product-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 16px;
+    transition: transform 0.3s ease;
+}
+
+.main-product-image:hover {
+    transform: scale(1.05);
+}
+
+/* Product Info Section */
+.product-info-section {
+    padding: 1rem;
+}
+
+.product-name {
+    color: var(--herbal-darker);
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.size-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--herbal-primary) 0%, var(--herbal-dark) 100%);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-left: 1rem;
+}
+
+/* Quality Badges */
+.quality-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.quality-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #dcfce7;
+    color: var(--herbal-dark);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 2px solid var(--herbal-primary);
+}
+
+.quality-badge i {
+    color: var(--herbal-primary);
+}
+
+/* Price Section */
+.price-section {
+    margin-bottom: 1.5rem;
+}
+
+.price {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--herbal-primary);
+    display: block;
+    line-height: 1;
+}
+
+.price-label {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+    display: block;
+}
+
+/* Stock Section */
+.stock-section {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background: white;
+    border: 2px solid #e5e7eb;
+}
+
+.stock-available {
+    color: var(--herbal-dark);
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stock-available i {
+    color: var(--herbal-primary);
+    font-size: 1.5rem;
+}
+
+.stock-unavailable {
+    color: #dc2626;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stock-unavailable i {
+    font-size: 1.5rem;
+}
+
+/* Description Section */
+.description-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 16px;
+    border-left: 4px solid var(--herbal-primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.description-section h3 {
+    color: var(--herbal-dark);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.description-section p {
+    color: #4b5563;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+/* Benefits Section */
+.benefits-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%);
+    border-radius: 16px;
+    border: 2px solid var(--herbal-primary);
+}
+
+.benefits-section h3 {
+    color: var(--herbal-darker);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.benefits-list li {
+    padding: 0.75rem 0;
+    color: var(--herbal-darker);
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.benefits-list i {
+    color: var(--herbal-primary);
+    font-size: 1.2rem;
+}
+
+/* Action Section */
+.action-section {
+    margin-top: 2rem;
+}
+
+.btn-add-to-cart {
+    width: 100%;
+    padding: 1.25rem 2rem;
+    background: linear-gradient(135deg, var(--herbal-primary) 0%, var(--herbal-dark) 100%);
+    color: var(--herbal-dark);
+    border: none;
+    border-radius: 16px;
+    font-size: 1.25rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.btn-add-to-cart:hover:not(:disabled) {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(34, 197, 94, 0.4);
+}
+
+.btn-add-to-cart:disabled {
+    background: #d1d5db;
+    color: #6b7280;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Info Cards */
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.info-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid #e5e7eb;
+}
+
+.info-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(34, 197, 94, 0.15);
+    border-color: var(--herbal-primary);
+}
+
+.info-card-header {
+    background: linear-gradient(135deg, var(--herbal-primary) 0%, var(--herbal-dark) 100%);
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.info-card-header i {
+    font-size: 2rem;
+}
+
+.info-card-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.info-card-body {
+    padding: 1.5rem;
+}
+
+.info-card-body p {
+    color: #4b5563;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+/* Ingredient Tags */
+.ingredient-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.ingredient-tag {
+    padding: 0.5rem 1rem;
+    background: #dcfce7;
+    color: var(--herbal-dark);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid var(--herbal-primary);
+}
+
+/* Usage Steps */
+.usage-steps {
+    padding-left: 1.5rem;
+    color: #4b5563;
+    line-height: 2;
+}
+
+.usage-steps li {
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+}
+
+/* Quality List */
+.quality-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.quality-list li {
+    padding: 0.75rem 0;
+    color: #4b5563;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 500;
+}
+
+.quality-list i {
+    color: var(--herbal-primary);
+    font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-name {
+        font-size: 2rem;
+    }
+
+    .price {
+        font-size: 2.5rem;
+    }
+
+    .info-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .main-product-image {
+        max-height: 350px;
+    }
+}

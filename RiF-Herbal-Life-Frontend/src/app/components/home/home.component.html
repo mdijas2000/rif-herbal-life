@@ -1,0 +1,86 @@
+<div class="home-container">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to RiF Herbal Life</h1>
+            <p>Discover the power of nature with our premium herbal products.</p>
+            <a routerLink="/products" class="cta-button">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Mini Product Display -->
+    <section class="featured-products">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+            <div *ngFor="let product of featuredProducts" class="product-card">
+                <div class="product-image">
+                    <img [src]="product.imageURL" [alt]="product.productName">
+                </div>
+                <div class="product-info">
+                    <h3>{{ product.productName }}</h3>
+                    <p class="price">₹{{ product.price }}</p>
+                    <a [routerLink]="['/product', product.productId]" class="view-btn">View Details</a>
+                </div>
+            </div>
+        </div>
+        <div class="view-all">
+            <a routerLink="/products" class="secondary-btn">View All Products</a>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about-us">
+        <div class="section-content">
+            <h2>About Us</h2>
+            <p>
+                At RiF Herbal Life, we believe in the healing power of nature. Our mission is to provide high-quality,
+                natural herbal products that promote wellness and vitality. We carefully select the finest ingredients
+                to ensure that our customers receive the best that nature has to offer.
+            </p>
+        </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section class="why-us">
+        <h2>Why Choose Us?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-leaf"></i>
+                <h3>100% Natural</h3>
+                <p>Pure herbal ingredients with no harmful chemicals.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-heart"></i>
+                <h3>Quality Assured</h3>
+                <p>Rigorously tested for safety and efficacy.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shipping-fast"></i>
+                <h3>Fast Delivery</h3>
+                <p>Quick and reliable shipping to your doorstep.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="contact-us">
+        <div class="section-content">
+            <h2>Contact Us</h2>
+            <p>Have questions? We'd love to hear from you.</p>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>Email: rifherballife&#64;gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p>Phone: +91 1234567890</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-instagram"></i>
+                    <p>Instagram: &#64;rif_herbal_life</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

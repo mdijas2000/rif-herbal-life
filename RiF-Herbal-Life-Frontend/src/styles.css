@@ -1,0 +1,43 @@
+:root {
+    --primary-green: #2E7D32;
+    /* Herbal Green */
+    --light-green: #E8F5E9;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .nav-link {
+    color: var(--primary-green) !important;
+    font-weight: 600;
+}
+
+.navbar-custom .nav-link:hover {
+    color: var(--accent-green) !important;
+}
+
+.navbar-custom .btn-outline-light {
+    color: var(--primary-green);
+    border-color: var(--primary-green);
+}
+
+.navbar-custom .btn-outline-light:hover {
+    background-color: var(--primary-green);
+    color: var(--white);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-green);
+    border-color: var(--primary-green);
+}
+
+.btn-primary:hover {
+    background-color: var(--text-dark);
+    border-color: var(--text-dark);
+}
+
+/* Cards */
+.card {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    background-color: var(--white);
+}

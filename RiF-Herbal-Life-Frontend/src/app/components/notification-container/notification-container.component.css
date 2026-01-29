@@ -1,0 +1,112 @@
+.notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+}
+
+.notification {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background: white;
+    border-left: 4px solid;
+    animation: slideIn 0.3s ease-out;
+    min-width: 300px;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.notification-success {
+    border-left-color: #22c55e;
+    background: #f0fdf4;
+}
+
+.notification-error {
+    border-left-color: #dc2626;
+    background: #fef2f2;
+}
+
+.notification-info {
+    border-left-color: #0284c7;
+    background: #f0f9ff;
+}
+
+.notification-warning {
+    border-left-color: #f59e0b;
+    background: #fffbeb;
+}
+
+.notification-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.notification-success .notification-icon {
+    background: #22c55e;
+    color: white;
+}
+
+.notification-error .notification-icon {
+    background: #dc2626;
+    color: white;
+}
+
+.notification-info .notification-icon {
+    background: #0284c7;
+    color: white;
+}
+
+.notification-warning .notification-icon {
+    background: #f59e0b;
+    color: white;
+}
+
+.notification-message {
+    flex: 1;
+    color: #1f2937;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.notification-close:hover {
+    color: #4b5563;
+}

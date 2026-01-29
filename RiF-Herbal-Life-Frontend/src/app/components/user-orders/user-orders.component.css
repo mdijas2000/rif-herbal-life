@@ -1,0 +1,26 @@
+.order-card {
+    border: 1px solid #d4edda;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+}
+
+.order-card:hover {
+    transform: translateY(-2px);
+}
+
+.card-header {
+    background: linear-gradient(45deg, #28a745, #20c997) !important;
+}
+
+.text-success {
+    color: #28a745 !important;
+}
+
+.badge.bg-light {
+    color: #28a745 !important;
+    font-weight: bold;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f8f9fa;
+}

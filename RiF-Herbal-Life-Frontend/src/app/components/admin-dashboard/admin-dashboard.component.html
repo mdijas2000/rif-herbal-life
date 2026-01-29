@@ -1,0 +1,145 @@
+<div class="admin-container">
+  <div class="header-section">
+    <h2>Admin Dashboard</h2>
+    <div class="user-controls">
+      <a routerLink="/products" class="action-btn secondary">Visit Shop</a>
+    </div>
+  </div>
+
+  <!-- Tab Navigation -->
+  <div class="dashboard-tabs">
+    <button [class.active]="activeTab === 'stats'" (click)="activeTab = 'stats'" class="tab-btn">
+      Overview
+    </button>
+    <button [class.active]="activeTab === 'products'" (click)="activeTab = 'products'" class="tab-btn">
+      Products
+    </button>
+    <button [class.active]="activeTab === 'orders'" (click)="activeTab = 'orders'" class="tab-btn">
+      Orders
+    </button>
+  </div>
+
+  <!-- Stats View -->
+  <div *ngIf="activeTab === 'stats'" class="stats-grid">
+    <div class="stat-card">
+      <h3>Total Revenue</h3>
+      <div class="value">₹{{ stats.totalRevenue }}</div>
+    </div>
+    <div class="stat-card">
+      <h3>Total Orders</h3>
+      <div class="value">{{ stats.totalOrders }}</div>
+    </div>
+    <div class="stat-card">
+      <h3>Total Products</h3>
+      <div class="value">{{ stats.totalProducts }}</div>
+    </div>
+    <div class="stat-card warning">
+      <h3>Low Stock Items</h3>
+      <div class="value">{{ stats.lowStockProducts }}</div>
+    </div>
+  </div>
+
+  <!-- Products View -->
+  <div *ngIf="activeTab === 'products'">
+    <div class="section-header">
+      <h3>Product Management</h3>
+      <a routerLink="/add" class="action-btn">
+        <span>+</span> Add New Product
+      </a>
+    </div>
+
+    <div class="product-list">
+      <div *ngFor="let product of products" class="product-card">
+        <div class="product-image">
+          <img [src]="product.imageURL" [alt]="product.productName" (error)="product.imageURL='assets/placeholder.png'">
+        </div>
+        <div class="product-details">
+          <h3>
+            {{ product.productName }}
+            <span *ngIf="product.size" class="size-badge">{{ product.size }}</span>
+          </h3>
+          <div class="price">₹{{ product.price }}</div>
+          <p class="description">{{ product.description }}</p>
+          <div class="stock-info" [class.low-stock]="(product.stock || 0) < 10">
+            Stock: {{ product.stock || 0 }}
+          </div>
+
+          <div class="card-actions">
+            <a [routerLink]="['/edit', product.productId]" class="edit-btn">Edit</a>
+            <button (click)="deleteProduct(product.productId!)" class="delete-btn">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Orders View -->
+  <div *ngIf="activeTab === 'orders'" class="orders-section">
+    <div class="section-header">
+      <h3>Order Management</h3>
+      <!-- Status Filter -->
+      <div class="filter-container">
+        <label for="statusFilter" class="filter-label">Filter by Status:</label>
+        <select id="statusFilter" [(ngModel)]="statusFilter" class="filter-select">
+          <option value="ALL">All Orders</option>
+          <option value="PENDING">Pending</option>
+          <option value="SHIPPED">Shipped</option>
+          <option value="DELIVERED">Delivered</option>
+          <option value="CANCELLED">Cancelled</option>
+        </select>
+        <span class="filter-count">({{ filteredOrders.length }} orders)</span>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="orders-table">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Items</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Tracking ID</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of filteredOrders">
+            <td>#{{ order.orderId }}</td>
+            <td>
+              <div class="customer-info">
+                <strong>{{ order.fullName || order.username }}</strong>
+                <div class="text-sm text-muted">{{ order.email }}</div>
+                <div class="text-sm">{{ order.mobileNumber }}</div>
+                <div class="text-sm address-text">{{ order.address }}</div>
+              </div>
+            </td>
+            <td>
+              <ul class="order-items-list">
+                <li *ngFor="let item of order.items">
+                  {{ item.productName }} x{{ item.quantity }}
+                </li>
+              </ul>
+            </td>
+            <td>₹{{ order.totalAmount }}</td>
+            <td>
+              <select [(ngModel)]="order.status" class="status-select" [class]="order.status.toLowerCase()">
+                <option value="PENDING">Pending</option>
+                <option value="SHIPPED">Shipped</option>
+                <option value="DELIVERED">Delivered</option>
+                <option value="CANCELLED">Cancelled</option>
+              </select>
+            </td>
+            <td>
+              <input type="text" [(ngModel)]="order.trackingId" placeholder="Enter Tracking ID" class="tracking-input">
+            </td>
+            <td>
+              <button (click)="updateTracking(order)" class="update-btn">Update</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

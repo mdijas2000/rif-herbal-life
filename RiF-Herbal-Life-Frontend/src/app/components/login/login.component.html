@@ -1,0 +1,57 @@
+<div class="container h-100">
+  <div class="d-flex justify-content-center h-100">
+    <div class="user_card">
+      <!-- Circular Logo at Top -->
+      <div class="d-flex justify-content-center">
+        <div class="brand_logo_container">
+          <img src="assets/logo.png" class="brand_logo" alt="RiF Herbal Life Logo">
+        </div>
+      </div>
+
+      <!-- Login Form -->
+      <div class="d-flex justify-content-center form_container">
+        <form (ngSubmit)="login()" #loginForm="ngForm">
+          <!-- Username Input with Icon -->
+          <div class="input-group mb-3">
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            <input type="text" name="username" class="form-control input_user" [(ngModel)]="username" required
+              placeholder="Username">
+          </div>
+
+          <!-- Password Input with Icon and Toggle -->
+          <div class="input-group mb-2 password-input-group">
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="fas fa-key"></i></span>
+            </div>
+            <input [type]="showPassword ? 'text' : 'password'" name="password" class="form-control input_pass"
+              [(ngModel)]="password" required placeholder="Password">
+            <button type="button" class="btn password-toggle-btn" (click)="togglePasswordVisibility()" tabindex="-1">
+              <i [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+            </button>
+          </div>
+
+          <!-- Error Message -->
+          <div *ngIf="errorMsg" class="error-message">
+            {{ errorMsg }}
+          </div>
+
+          <!-- Login Button -->
+          <div class="d-flex justify-content-center mt-3 login_container">
+            <button type="submit" name="button" class="btn login_btn" [disabled]="!loginForm.form.valid">
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Links -->
+      <div class="mt-4">
+        <div class="d-flex justify-content-center links">
+          Don't have an account? <a routerLink="/register" class="ml-2">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

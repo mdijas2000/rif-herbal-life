@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <h2>Add New Product</h2>
+  <form (ngSubmit)="onSubmit()" #form="ngForm">
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input class="form-control" [(ngModel)]="product.productName" name="name" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea class="form-control" [(ngModel)]="product.description" name="description" required></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Price</label>
+      <input type="number" class="form-control" [(ngModel)]="product.price" name="price" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Product Image</label>
+      <input type="file" class="form-control" (change)="onFileSelected($event)" name="imageUrl" accept="image/*" />
+      <div *ngIf="product.imageURL" class="mt-2">
+        <img [src]="product.imageURL" alt="Product preview"
+          style="max-width: 200px; max-height: 200px; object-fit: cover; border-radius: 8px;" />
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Size</label>
+      <input class="form-control" [(ngModel)]="product.size" name="size" placeholder="e.g., 250ml, 100g, 500g">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Stock</label>
+      <input type="number" class="form-control" [(ngModel)]="product.stock" name="stock" min="0">
+    </div>
+
+    <button class="btn btn-success" type="submit">Add Product</button>
+  </form>
+</div>

@@ -1,0 +1,101 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Shopping Cart</h2>
+
+  <div *ngIf="cart.length === 0" class="alert alert-info">
+    Your cart is empty. <a href="/products" class="alert-link">Go shopping</a>
+  </div>
+
+  <div *ngIf="cart.length > 0">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-light">
+          <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Product</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cart">
+            <td>
+              <img [src]="item.imageURL" alt="{{ item.productName }}" width="60" height="60" class="img-thumbnail">
+            </td>
+            <td>{{ item.productName }}</td>
+            <td>₹ {{ item.price }}</td>
+            <td>
+              <div class="d-flex align-items-center">
+                <button class="btn btn-sm btn-outline-secondary" (click)="decrease(item.productId)">-</button>
+                <span class="mx-2 fw-bold">{{ item.quantity }}</span>
+                <button class="btn btn-sm btn-outline-secondary" (click)="increase(item.productId)">+</button>
+              </div>
+            </td>
+            <td>₹ {{ item.price * item.quantity }}</td>
+            <td>
+              <button class="btn btn-sm btn-danger" (click)="remove(item.productId)">
+                <i class="bi bi-trash"></i> Remove
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Checkout Section -->
+    <div *ngIf="!showCheckout" class="d-flex justify-content-end align-items-center mt-3">
+      <h4 class="me-4">Grand Total: <span class="text-success">₹ {{ totalPrice }}</span></h4>
+      <button class="btn btn-primary btn-lg" (click)="checkout()">Proceed to Checkout</button>
+    </div>
+
+    <!-- Checkout Form -->
+    <div *ngIf="showCheckout" class="checkout-form mt-4">
+      <h3 class="mb-3">Delivery Information</h3>
+
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="radio" name="addressOption" id="profileAddress" [value]="true"
+          [(ngModel)]="useProfileAddress">
+        <label class="form-check-label" for="profileAddress">
+          Use Profile Address
+        </label>
+        <div *ngIf="useProfileAddress && profileAddress" class="ms-4 mt-2 text-muted">
+          <small><strong>Address:</strong> {{ profileAddress }}</small><br>
+          <small><strong>Mobile:</strong> {{ profileMobile }}</small>
+        </div>
+        <div *ngIf="useProfileAddress && !profileAddress" class="ms-4 mt-2 text-danger">
+          <small>No profile address found. Please enter delivery address below.</small>
+        </div>
+      </div>
+
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="radio" name="addressOption" id="newAddress" [value]="false"
+          [(ngModel)]="useProfileAddress">
+        <label class="form-check-label" for="newAddress">
+          Enter New Address
+        </label>
+      </div>
+
+      <div *ngIf="!useProfileAddress" class="new-address-fields p-3 border rounded mb-3">
+        <div class="mb-3">
+          <label for="deliveryAddress" class="form-label">Delivery Address *</label>
+          <textarea class="form-control" id="deliveryAddress" rows="3" [(ngModel)]="deliveryAddress"
+            placeholder="Enter full delivery address" required></textarea>
+        </div>
+        <div class="mb-3">
+          <label for="deliveryMobile" class="form-label">Mobile Number *</label>
+          <input type="tel" class="form-control" id="deliveryMobile" [(ngModel)]="deliveryMobileNumber"
+            placeholder="Enter mobile number" required>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mt-4">
+        <h4>Grand Total: <span class="text-success">₹ {{ totalPrice }}</span></h4>
+        <div>
+          <button class="btn btn-secondary me-2" (click)="hideCheckoutForm()">Cancel</button>
+          <button class="btn btn-success btn-lg" (click)="placeOrder()">Place Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

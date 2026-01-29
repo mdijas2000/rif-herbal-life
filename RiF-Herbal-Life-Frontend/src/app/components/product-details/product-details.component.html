@@ -1,0 +1,127 @@
+<div class="product-details-container" *ngIf="product">
+  <div class="container">
+    <!-- Back Button -->
+    <div class="back-button-wrapper">
+      <a routerLink="/products" class="back-btn">
+        <i class="bi bi-arrow-left"></i> Back to Products
+      </a>
+    </div>
+
+    <!-- Main Product Section -->
+    <div class="row mt-4">
+      <!-- Product Image -->
+      <div class="col-md-6">
+        <div class="product-image-section">
+          <div class="natural-badge-large">
+            <span>🌿</span>
+          </div>
+          <img [src]="product.imageURL" class="main-product-image" alt="{{ product.productName }}" />
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="col-md-6">
+        <div class="product-info-section">
+          <h1 class="product-name">
+            {{ product.productName }}
+            <span *ngIf="product.size" class="size-tag">{{ product.size }}</span>
+          </h1>
+
+          <!-- Quality Badges -->
+          <div class="quality-badges">
+            <span class="quality-badge">
+              <i class="bi bi-patch-check-fill"></i> 100% Natural
+            </span>
+            <span class="quality-badge">
+              <i class="bi bi-heart-fill"></i> Herbal
+            </span>
+            <span class="quality-badge">
+              <i class="bi bi-flower1"></i> Organic
+            </span>
+          </div>
+
+          <!-- Price -->
+          <div class="price-section">
+            <span class="price">₹{{ product.price }}</span>
+            <span class="price-label">(Inclusive of all taxes)</span>
+          </div>
+
+          <!-- Stock Info -->
+          <div class="stock-section">
+            <span *ngIf="(product.stock || 0) > 0" class="stock-available">
+              <i class="bi bi-check-circle-fill"></i> In Stock ({{ product.stock }} units)
+            </span>
+            <span *ngIf="(product.stock || 0) === 0" class="stock-unavailable">
+              <i class="bi bi-x-circle-fill"></i> Out of Stock
+            </span>
+          </div>
+
+          <!-- Description -->
+          <div class="description-section">
+            <h3><i class="bi bi-info-circle"></i> About This Product</h3>
+            <p>{{ product.description }}</p>
+          </div>
+
+          <!-- Key Benefits -->
+          <div class="benefits-section">
+            <h3><i class="bi bi-stars"></i> Key Benefits</h3>
+            <ul class="benefits-list">
+              <li><i class="bi bi-check2-circle"></i> Promotes natural wellness & vitality</li>
+              <li><i class="bi bi-check2-circle"></i> Made from pure herbal ingredients</li>
+              <li><i class="bi bi-check2-circle"></i> No artificial additives or preservatives</li>
+              <li><i class="bi bi-check2-circle"></i> Supports holistic health naturally</li>
+            </ul>
+          </div>
+
+          <!-- Add to Cart / Actions -->
+          <div class="action-section">
+            <button class="btn-add-to-cart" (click)="addToCart()" [disabled]="(product.stock || 0) === 0">
+              <i class="bi bi-cart-plus"></i>
+              {{ (product.stock || 0) === 0 ? 'Out of Stock' : 'Add to Cart' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Information Tabs -->
+    <div class="row mt-5">
+      <div class="col-12">
+        <div class="info-cards">
+          <!-- Ingredients Card -->
+          <div class="info-card">
+            <div class="info-card-header">
+              <i class="bi bi-flower2"></i>
+              <h3>Natural Ingredients</h3>
+            </div>
+            <div class="info-card-body">
+              <p>Crafted with carefully selected natural herbs and botanical extracts known for their beneficial
+                properties.</p>
+              <div class="ingredient-tags">
+                <span class="ingredient-tag">🌱 Herbal Extracts</span>
+                <span class="ingredient-tag">🍃 Natural Oils</span>
+                <span class="ingredient-tag">🌾 Organic Compounds</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Usage Instructions Card -->
+          <div class="info-card">
+            <div class="info-card-header">
+              <i class="bi bi-clipboard-check"></i>
+              <h3>How to Use</h3>
+            </div>
+            <div class="info-card-body">
+              <ol class="usage-steps">
+                <li>Take as recommended by your healthcare provider</li>
+                <li>Use consistently for best results</li>
+                <li>Store in a cool, dry place away from direct sunlight</li>
+                <li>Keep out of reach of children</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
