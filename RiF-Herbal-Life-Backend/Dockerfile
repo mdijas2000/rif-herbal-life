@@ -9,4 +9,4 @@ RUN chmod +x mvnw \
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "target/*.jar"]
+CMD java -jar target/*.jar
