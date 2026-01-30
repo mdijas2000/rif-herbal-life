@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../models/product.model';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private api = "/api/products";
+  private api = `${environment.apiUrl}/products`;
 
   constructor(private http: HttpClient) { }
 
@@ -35,6 +37,6 @@ export class ProductService {
   uploadImage(file: File): Observable<{ url: string }> {
     const formData = new FormData();
     formData.append('file', file);
-    return this.http.post<{ url: string }>('/api/upload', formData);
+    return this.http.post<{ url: string }>(`${environment.apiUrl}/upload`, formData);
   }
 }

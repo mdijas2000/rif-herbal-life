@@ -4,12 +4,14 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { isPlatformBrowser } from '@angular/common';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private baseUrl = '/api';
+  private baseUrl = `${environment.apiUrl}/auth`;
   private platformId = inject(PLATFORM_ID);
 
   constructor(private http: HttpClient) { }
@@ -19,7 +21,7 @@ export class AuthService {
   }
 
   login(data: { username: string, password: string }): Observable<any> {
-    return this.http.post(`${this.baseUrl}/auth/login`, data).pipe(
+    return this.http.post(`${this.baseUrl}/login`, data).pipe(
       tap((res: any) => {
         if (this.isBrowser()) {
           localStorage.setItem('token', res.token);
@@ -42,7 +44,7 @@ export class AuthService {
   }
 
   register(user: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/auth/register`, user);
+    return this.http.post(`${this.baseUrl}/register`, user);
   }
 
   decodeToken(token: string) {
