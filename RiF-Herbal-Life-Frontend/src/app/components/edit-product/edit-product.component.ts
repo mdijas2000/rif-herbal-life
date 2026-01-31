@@ -16,6 +16,7 @@ import { NotificationService } from '../../services/notification.service';
 export class EditProductComponent implements OnInit {
   product: Product = { productName: '', description: '', price: 0, imageURL: '' };
   productId!: number;
+  isLoading: boolean = false;
   selectedFile: File | null = null;
 
   constructor(
@@ -38,6 +39,7 @@ export class EditProductComponent implements OnInit {
   }
 
   onUpdate() {
+    this.isLoading = true;
     if (this.selectedFile) {
       this.productService.uploadImage(this.selectedFile).subscribe({
         next: (response) => {
@@ -45,6 +47,7 @@ export class EditProductComponent implements OnInit {
           this.saveProduct();
         },
         error: (err) => {
+          this.isLoading = false;
           this.notificationService.error('Failed to upload image');
           console.error('Error uploading image', err);
         }
@@ -57,10 +60,12 @@ export class EditProductComponent implements OnInit {
   saveProduct() {
     this.productService.updateProduct(this.productId, this.product).subscribe({
       next: () => {
+        this.isLoading = false;
         this.notificationService.success('Product updated successfully!');
         this.router.navigate(['/admin/dashboard']);
       },
       error: (err) => {
+        this.isLoading = false;
         this.notificationService.error('Failed to update product');
         console.error('Error updating product', err);
       }
