@@ -12,9 +12,10 @@ public class CorsConfig {
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
-            public void addCorsMappings(CorsRegistry registry) {  // must match exactly
+            public void addCorsMappings(CorsRegistry registry) { // must match exactly
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:4200","https://rifherballife.netlify.app/")
+                        .allowedOrigins("http://localhost:4200", "https://rifherballife.netlify.app",
+                                "https://rif-herbal-life-frontend.netlify.app", "https://rif-herbal-life.netlify.app")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .exposedHeaders("*")
