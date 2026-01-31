@@ -20,6 +20,8 @@ export class RegisterComponent {
     email: '',
     mobileNumber: '',
     address: '',
+    city: '',
+    pincode: '',
     role: 'ROLE_USER'
   };
   errorMessage = '';

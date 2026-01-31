@@ -44,4 +44,8 @@ public class User {
 	private String mobileNumber;
 
 	private String address;
+
+	private String city;
+
+	private String pincode;
 }
