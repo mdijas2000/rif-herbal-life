@@ -59,7 +59,9 @@ export class AdminDashboardComponent implements OnInit {
     this.stats.totalProducts = this.products.length;
     this.stats.totalOrders = this.orders.length;
     this.stats.lowStockProducts = this.products.filter(p => (p.stock || 0) < 20).length;
-    this.stats.totalRevenue = this.orders.reduce((sum, order) => sum + order.totalAmount, 0);
+    this.stats.totalRevenue = this.orders
+      .filter(order => order.status !== 'CANCELLED')
+      .reduce((sum, order) => sum + order.totalAmount, 0);
   }
 
   get filteredOrders(): Order[] {
