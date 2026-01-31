@@ -22,8 +22,8 @@ export class OrderService {
         };
     }
 
-    placeOrder(deliveryAddress: string, deliveryMobileNumber: string): Observable<any> {
-        return this.http.post(`${this.baseUrl}`, { deliveryAddress, deliveryMobileNumber }, this.getAuthHeaders());
+    placeOrder(deliveryAddress: string, deliveryMobileNumber: string, city: string = '', pincode: string = ''): Observable<any> {
+        return this.http.post(`${this.baseUrl}`, { deliveryAddress, deliveryMobileNumber, city, pincode }, this.getAuthHeaders());
     }
 
     cancelOrder(orderId: number): Observable<any> {

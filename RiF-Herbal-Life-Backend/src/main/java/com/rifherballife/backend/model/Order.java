@@ -49,4 +49,8 @@ public class Order {
 	private String deliveryAddress;
 
 	private String deliveryMobileNumber;
+
+	private String city;
+
+	private String pincode;
 }
