@@ -1,18 +1,20 @@
 .footer {
-    background-color: #2E7D32;
-    /* Dark Green */
+    background-color: #1B5E20;
+    /* Darker Green */
     color: white;
-    padding: 40px 20px 20px;
-    margin-top: auto;
+    padding: 60px 20px 30px;
+    margin-top: 50px;
 }
 
 .footer-content {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
+    /* Center the sections */
     max-width: 1200px;
     margin: 0 auto;
-    gap: 20px;
+    gap: 60px;
+    /* Increase gap for better spacing */
 }
 
 .footer-section {
