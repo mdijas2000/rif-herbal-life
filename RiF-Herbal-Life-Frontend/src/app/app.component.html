@@ -6,22 +6,31 @@
       RiF Herbal Life
     </a>
 
+    <!-- Hamburger button for mobile -->
+    <button class="navbar-toggler" type="button" (click)="toggleMobileMenu()" [attr.aria-expanded]="isMobileMenuOpen"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
     <!-- Navigation buttons aligned to the right -->
-    <div class="ms-auto">
-      <div *ngIf="!isLoggedIn()">
-        <a routerLink="/login" routerLinkActive="active" class="btn btn-outline-success me-2">Login</a>
-        <a routerLink="/register" routerLinkActive="active" class="btn btn-outline-success me-2">Register</a>
-      </div>
-      <div *ngIf="isLoggedIn()">
-        <a *ngIf="!isAdmin()" routerLink="/products" routerLinkActive="active"
-          class="btn btn-outline-success me-2">Products</a>
-        <a *ngIf="!isAdmin()" routerLink="/my-orders" routerLinkActive="active" class="btn btn-outline-success me-2">My
-          Orders</a>
-        <a *ngIf="isAdmin()" routerLink="/admin/dashboard" routerLinkActive="active"
-          class="btn btn-outline-success me-2">Dashboard</a>
-        <a *ngIf="isAdmin()" routerLink="/add" routerLinkActive="active" class="btn btn-outline-success me-2">Add
-          Product</a>
-        <button (click)="logout()" class="btn btn-outline-danger">Logout</button>
+    <div class="navbar-collapse" [class.show]="isMobileMenuOpen">
+      <div class="ms-auto navbar-nav-container">
+        <div *ngIf="!isLoggedIn()" class="nav-buttons">
+          <a routerLink="/login" routerLinkActive="active" class="btn btn-outline-success me-2">Login</a>
+          <a routerLink="/register" routerLinkActive="active" class="btn btn-outline-success me-2">Register</a>
+        </div>
+        <div *ngIf="isLoggedIn()" class="nav-buttons">
+          <a *ngIf="!isAdmin()" routerLink="/products" routerLinkActive="active"
+            class="btn btn-outline-success me-2">Products</a>
+          <a *ngIf="!isAdmin()" routerLink="/my-orders" routerLinkActive="active"
+            class="btn btn-outline-success me-2">My
+            Orders</a>
+          <a *ngIf="isAdmin()" routerLink="/admin/dashboard" routerLinkActive="active"
+            class="btn btn-outline-success me-2">Dashboard</a>
+          <a *ngIf="isAdmin()" routerLink="/add" routerLinkActive="active" class="btn btn-outline-success me-2">Add
+            Product</a>
+          <button (click)="logout()" class="btn btn-outline-danger">Logout</button>
+        </div>
       </div>
     </div>
   </div>

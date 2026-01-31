@@ -18,6 +18,7 @@ import { FooterComponent } from './components/footer/footer.component';
 export class AppComponent {
   title = 'RiF-Herbal-Life-Frontend';
   showMiniCart: boolean = true;
+  isMobileMenuOpen: boolean = false;
 
   constructor(private router: Router, private authService: AuthService) {
     this.router.events.pipe(
@@ -25,7 +26,13 @@ export class AppComponent {
     ).subscribe((event: any) => {
       const url = event.url.toLowerCase();
       this.showMiniCart = !url.includes('/login') && !url.includes('/edit') && !url.includes('/cart') && !url.includes('/admin');
+      // Close mobile menu on navigation
+      this.isMobileMenuOpen = false;
     });
+  }
+
+  toggleMobileMenu() {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
   isLoggedIn(): boolean {
