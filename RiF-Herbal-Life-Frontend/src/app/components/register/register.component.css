@@ -119,6 +119,8 @@ button:disabled {
     position: absolute;
     right: 0;
     top: 0;
+    width: auto !important;
+    margin: 0 !important;
     height: 100%;
     background: transparent !important;
     border: none !important;
