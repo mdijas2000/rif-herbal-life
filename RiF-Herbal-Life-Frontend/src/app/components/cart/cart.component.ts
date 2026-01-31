@@ -43,10 +43,16 @@ export class CartComponent implements OnInit {
             this.authService.getProfile().subscribe({
                 next: (user) => {
                     if (user) {
-                        this.profileAddress = user.address || '';
+                        const fullAddress = [
+                            user.address || '',
+                            user.city || '',
+                            user.pincode || ''
+                        ].filter(part => part.trim() !== '').join(', ');
+
+                        this.profileAddress = fullAddress;
                         this.profileMobile = user.mobileNumber || '';
                         // Also set delivery fields to profile defaults initially
-                        this.deliveryAddress = user.address || '';
+                        this.deliveryAddress = fullAddress;
                         this.deliveryMobileNumber = user.mobileNumber || '';
                     }
                 },
