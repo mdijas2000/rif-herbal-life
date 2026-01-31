@@ -39,15 +39,21 @@ export class CartComponent implements OnInit {
     }
 
     loadUserProfile() {
-        const username = this.authService.getUsername();
-        if (username) {
-            // Get user profile from local storage or auth service
-            const address = localStorage.getItem('userAddress') || '';
-            const mobile = localStorage.getItem('userMobile') || '';
-            this.profileAddress = address;
-            this.profileMobile = mobile;
-            this.deliveryAddress = address;
-            this.deliveryMobileNumber = mobile;
+        if (this.authService.isLoggedIn()) {
+            this.authService.getProfile().subscribe({
+                next: (user) => {
+                    if (user) {
+                        this.profileAddress = user.address || '';
+                        this.profileMobile = user.mobileNumber || '';
+                        // Also set delivery fields to profile defaults initially
+                        this.deliveryAddress = user.address || '';
+                        this.deliveryMobileNumber = user.mobileNumber || '';
+                    }
+                },
+                error: (err) => {
+                    console.error('Failed to load user profile', err);
+                }
+            });
         }
     }
 

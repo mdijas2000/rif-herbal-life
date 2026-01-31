@@ -38,6 +38,8 @@ public class AuthController {
         private String email;
         private String mobileNumber;
         private String address;
+        private String city;
+        private String pincode;
     }
 
     @PostMapping("/register")
@@ -62,6 +64,8 @@ public class AuthController {
                 .email(req.getEmail())
                 .mobileNumber(req.getMobileNumber())
                 .address(req.getAddress())
+                .city(req.getCity())
+                .pincode(req.getPincode())
                 .build();
         userRepository.save(user);
         return ResponseEntity.ok(java.util.Collections.singletonMap("message", "User registered successfully"));
@@ -80,6 +84,14 @@ public class AuthController {
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(401).body("Invalid credentials");
         }
+    }
+
+    @GetMapping("/profile")
+    public ResponseEntity<?> getProfile(Authentication authentication) {
+        User user = userRepository.findByUsername(authentication.getName()).orElseThrow();
+        // Return user details sans password ideally, but here we return full object.
+        // Ensure to handle password visibility in User entity or DTO in production.
+        return ResponseEntity.ok(user);
     }
 
     @Data

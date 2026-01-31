@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CartItem } from '../models/cart-item';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 
@@ -38,11 +38,27 @@ export class CartService {
 
   getCart(): Observable<CartItem[]> {
     return this.http.get<CartItem[]>(`${this.baseUrl}`, this.getAuthHeaders()).pipe(
+      map(items => items.map(item => ({
+        ...item,
+        imageURL: this.fixUrl(item.imageURL)
+      }))),
       tap(cart => {
         this.cart = cart;
         this.cartSubject.next(cart);
       })
     );
+  }
+
+  private fixUrl(url: string): string {
+    if (url && url.includes('localhost:8080')) {
+      const pathIndex = url.indexOf('/uploads');
+      if (pathIndex !== -1) {
+        const relativePath = url.substring(pathIndex);
+        const baseUrl = environment.apiUrl.replace('/api', '');
+        return `${baseUrl}${relativePath}`;
+      }
+    }
+    return url;
   }
 
   increase(productId: number): Observable<any> {
