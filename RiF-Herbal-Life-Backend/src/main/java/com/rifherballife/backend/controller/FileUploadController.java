@@ -15,7 +15,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/upload")
-@CrossOrigin(origins = "http://localhost:4200")
+
 public class FileUploadController {
 
     private final Path fileStorageLocation;
@@ -45,7 +45,11 @@ public class FileUploadController {
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
             // Generate file download URI
-            String fileDownloadUri = "http://localhost:8080/uploads/" + fileName;
+            String fileDownloadUri = org.springframework.web.servlet.support.ServletUriComponentsBuilder
+                    .fromCurrentContextPath()
+                    .path("/uploads/")
+                    .path(fileName)
+                    .toUriString();
 
             Map<String, String> response = new HashMap<>();
             response.put("url", fileDownloadUri);
